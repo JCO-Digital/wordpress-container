@@ -1,0 +1,92 @@
+version: "3.3"
+
+networks:
+  jcore:
+    driver: bridge
+services:
+  # Container to create certs and exit.
+  tlscerts:
+    image: "jcodigi/tlscerts:latest"
+    volumes:
+      - ./config.sh:/project/config.sh
+      - ./.config:/project/.config
+      - ./.jcore/ssl:/home/jcore/ssl
+      - ~/.config/jcore/ssl:/home/jcore/ca
+
+  # MariaDB container
+  db:
+    image: "mariadb:latest"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - default
+
+  # Adminer running on port 1080
+  adminer:
+    depends_on:
+      - db
+    image: adminer:latest
+    ports:
+      - 1080:8080
+    networks:
+      - default
+
+  # PHP-fpm container with Wordpress stuff.
+  wordpress:
+    depends_on:
+      - db
+    image: "jcodigi/wordpress:latest"
+    user: "1000"
+    environment:
+      WORDPRESS_DB_HOST: "db:3306"
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: define( 'FS_METHOD', 'direct' );
+    volumes:
+      - ./.jcore/wordpress:/var/www/html
+      - ./.jcore/sql:/project/.jcore/sql
+      - ./.jcore/php.ini:/usr/local/etc/php/php.ini
+      - ./wp-content:/var/www/html/wp-content
+      - ./vendor:/var/www/html/vendor
+      - ./config.sh:/project/config.sh
+      - ./.config:/project/.config
+      - ~/.config/jcore/ssh:/home/jcore/.ssh
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - jcore
+
+  # Nginx server configuration
+  web:
+    depends_on:
+      - db
+      - wordpress
+      - tlscerts
+    image: nginx:latest
+    links:
+      - db
+      - wordpress
+    volumes:
+      - ./.jcore/wordpress:/var/www/html
+      - ./.jcore/ssl:/etc/ssl
+      - ./wp-content:/var/www/html/wp-content
+      - ./.config/nginx:/etc/nginx/conf.d/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      default:
+      jcore:
+        aliases:
+          - docker.localhost # Can and should be changed for wp-cron to work correctly, the correct value is [projectname].localhost
+
+volumes:
+  db:

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="JCO">
+    <description>JCO Wordpress coding standard.</description>
+
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
+    <arg name="extensions" value="php"/>
+    <arg value="p" />
+
+    <file>wp-content</file>
+
+    <exclude-pattern>*/.git/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>wp-content/mu-plugins</exclude-pattern>
+    <exclude-pattern>wp-content/plugins</exclude-pattern>
+    <exclude-pattern>wp-content/uploads</exclude-pattern>
+
+
+    <rule ref="WordPress-Docs" />
+    <rule ref="WordPress-Extra">
+        <exclude name="WordPress.PHP.YodaConditions" />
+    </rule>
+</ruleset>

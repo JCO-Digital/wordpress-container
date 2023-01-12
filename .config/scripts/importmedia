@@ -1,0 +1,12 @@
+#!/bin/bash
+
+TLD="localhost"
+PROJECTPATH="/project"
+if [[ -f "/vagrant/.config/config-wrapper.sh" ]]; then
+  TLD="test"
+  PROJECTPATH="/vagrant"
+fi
+. $PROJECTPATH/.config/config-wrapper.sh
+
+echo "Syncing media"
+rsync -r --delete --info=progress2 --no-inc-recursive ${REMOTEHOST}:${REMOTEPATH}/wp-content/uploads/ $WEBROOT/wp-content/uploads/ --exclude=wp-migrate-db

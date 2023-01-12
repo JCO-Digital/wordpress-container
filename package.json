@@ -1,0 +1,58 @@
+{
+  "name": "jcotest",
+  "theme": "jcore2-child",
+  "version": "1.0.22",
+  "author": "JCO Digital <developer@jco.fi>",
+  "description": "",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/register": "^7.9.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.2",
+    "del": "^5.1.0",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-buffer": "0.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-tap": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulplog": "^1.0.0",
+    "sass": "^1.41.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": "commonjs",
+          "targets": {
+            "browsers": [
+              "defaults"
+            ]
+          }
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "jcore": "file:wp-content/themes/jcore2",
+    "gulp": "4.0.2",
+    "gulp-cli": "^2.2.1",
+    "npm": "^7.24.0"
+  }
+}

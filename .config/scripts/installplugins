@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PROJECTPATH="/project"
+if [[ -f "/vagrant/.config/config-wrapper.sh" ]]; then
+  PROJECTPATH="/vagrant"
+fi
+. $PROJECTPATH/.config/config-wrapper.sh
+
+if ! wp plugin is-installed --path=$WEBROOT loco-translate
+then
+    wp plugin install --path=$WEBROOT --activate loco-translate
+fi

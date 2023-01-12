@@ -1,0 +1,56 @@
+#!/bin/bash
+
+TLD="localhost"
+PROJECTPATH="/project"
+if [[ -f "/vagrant/.config/config-wrapper.sh" ]]; then
+  TLD="test"
+  PROJECTPATH="/vagrant"
+fi
+. $PROJECTPATH/.config/config-wrapper.sh
+
+SQLPATH="$PROJECTPATH/.jcore/sql"
+
+mkdir -p $SQLPATH
+if [ -f $SQLPATH/update.sql.gz ]; then
+  gunzip $SQLPATH/update.sql.gz
+fi
+if [ ! -f $SQLPATH/update.sql ]; then
+  EXCLUDE=""
+  # Exclude tables from export
+  if [ ! -z "$DB_EXCLUDE" ]; then
+    ARGS="--exclude_tables="
+    for TABLE in "${DB_EXCLUDE[@]}" ; do
+      ARGS+="${PREFIX}${TABLE},"
+    done
+    EXCLUDE=`echo ${ARGS} | sed s/,$//`
+  fi
+  mkdir -p sql
+  echo "Fetching DB from $REMOTEHOST"
+  wp db export ${EXCLUDE} --ssh=$REMOTEHOST --path=$REMOTEPATH - > $SQLPATH/update.sql || rm $SQLPATH/update.sql
+fi
+
+
+if [ -f $SQLPATH/update.sql ]; then
+  echo "Found update"
+  # Update table prefix
+  wp config set --path=$WEBROOT --type=variable table_prefix $PREFIX
+
+  wp db reset --path=$WEBROOT --yes
+  wp db import --path=$WEBROOT $SQLPATH/update.sql
+  if [ -f $SQLPATH/db.sql ]; then
+    mv $SQLPATH/db.sql $SQLPATH/db.old.sql
+  fi
+  mv $SQLPATH/update.sql $SQLPATH/db.sql
+
+  for domainRecord in "${DOMAINS[@]}"
+  do
+    domain=(${domainRecord//;/ })
+    REMOTE=${domain[0]}
+    LOCAL="${domain[1]}.$TLD"
+    if [ ${#LOCAL} -lt 6 ]; then
+        LOCAL="${REMOTE}.$TLD"
+    fi
+    echo "Replace $REMOTE with $LOCAL"
+    wp search-replace --path=$WEBROOT "//$REMOTE" "//$LOCAL"  --recurse-objects --skip-columns=guid
+  done
+fi

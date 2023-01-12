@@ -1,0 +1,40 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: submodules
+    image: docker:git
+    commands:
+      - git config submodule.wp-content/themes/jcore2.url https://bitbucket.org/jcodigital/jcore2.git
+      - git config submodule.wp-content/themes/jcore2-child.url https://bitbucket.org/jcodigital/jcore2-child.git
+      - git submodule update --init --recursive
+
+  - name: composer
+    image: composer:latest
+    commands:
+      - composer install --no-ansi --no-dev --no-interaction --optimize-autoloader
+
+  - name: build
+    image: node:lts
+    commands:
+      - npm ci
+      - node_modules/.bin/gulp build
+
+  - name: deploy
+    image: jcodigi/jcodeploy
+    pull: false
+    settings:
+      production:
+      develop:
+      source:
+        - wp-content/themes/jcore2
+        - wp-content/themes/projectname
+        - vendor
+    environment:
+      SSH_KEY:
+        from_secret: ssh_key
+    when:
+      branch:
+        include:
+          - master
+          - develop

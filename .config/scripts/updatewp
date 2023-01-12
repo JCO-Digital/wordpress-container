@@ -1,0 +1,37 @@
+#!/bin/bash
+
+PLUGINS=0
+DB=0
+MEDIA=0
+
+
+case "$1" in
+  "all"|"totalrecall")
+    PLUGINS=1
+    DB=1
+    MEDIA=1
+    ;;
+  "db"|"database")
+    DB=1
+    ;;
+  "plugins"|"plugin")
+    PLUGINS=1
+    ;;
+  "media")
+    MEDIA=1
+    ;;
+  *)
+    PLUGINS=1
+    DB=1
+    ;;
+esac
+
+if [[ $PLUGINS -gt 0 ]]; then
+  importplugins
+fi
+if [[ $DB -gt 0 ]]; then
+  importdb
+fi
+if [[ $MEDIA -gt 0 ]]; then
+  importmedia
+fi
