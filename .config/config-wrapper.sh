@@ -45,5 +45,3 @@ if [ ${#domainFirst[1]} -eq 0 ]; then
 else
     DOMAINNAME="${domainFirst[1]}.localhost"
 fi
-
-VAGRANTNAME="$DOMAINNAME"

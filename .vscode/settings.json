@@ -1,7 +1,0 @@
-{
-    "phpcs.enable": true,
-    "phpcbf.enable": true,
-    "phpcbf.documentFormattingProvider": true,
-    "phpcbf.executablePath": "${workspaceRoot}/vendor/bin/phpcbf",
-    "phpcbf.standard": "WordPress"
-}
