@@ -18,11 +18,10 @@ steps:
     image: node:lts
     commands:
       - npm ci
-      - node_modules/.bin/gulp build
+      - npm run build
 
   - name: deploy
     image: jcodigi/jcodeploy
-    pull: false
     settings:
       production:
       develop:

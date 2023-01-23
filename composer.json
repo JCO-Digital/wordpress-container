@@ -18,7 +18,7 @@
             }
         },
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         },
         "allow-plugins": {
             "composer/installers": true,
@@ -31,10 +31,11 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
     },
     "require": {
-        "timber/timber": "^1.19.0",
+        "timber/timber": "^1.22.0",
         "jco/advanced-custom-fields-pro": "^5.10.2",
         "jco/wp-migrate-db-pro": "^2.1.2",
         "sentry/sentry": "^3.3.2",
-        "symfony/http-client": "^5.3"
+        "symfony/http-client": "^5.3",
+        "wpackagist-plugin/wordpress-seo": "^19.14"
     }
 }
