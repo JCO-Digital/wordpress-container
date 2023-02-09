@@ -1,6 +1,6 @@
 {
-  "name": "jcotest",
-  "version": "1.1.0",
+  "name": "jcore",
+  "version": "1.2.0",
   "author": "JCO Digital <developer@jco.fi>",
   "description": "",
   "main": "",
@@ -9,6 +9,7 @@
     "watch": "node build.mjs watch"
   },
   "config": {
+    "parent": "jcore2",
     "theme": "jcore2-child"
   },
   "repository": {

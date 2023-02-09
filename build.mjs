@@ -4,7 +4,6 @@ import {sassPlugin} from 'esbuild-sass-plugin';
 import {readdirSync, existsSync} from "fs";
 import {join, parse} from "path";
 
-
 const jcorePath = join('wp-content/themes', process.env.npm_package_config_parent ?? 'jcore2');
 const childPath = join('wp-content/themes', process.env.npm_package_config_theme ?? 'jcore2-child');
 
@@ -15,7 +14,7 @@ const options = {
     sourcemap: true,
     logLevel: 'info',
     entryNames: '[name]',
-    external: ['*.png', '*.svg', '*.jpg', '*.jpeg', '*.css']
+    external: ['*.png', '*.svg', '*.jpg', '*.jpeg', '*.css', '*.woff']
 };
 
 const childJs = {
