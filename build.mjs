@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import * as esbuild from 'esbuild';
 import {sassPlugin} from 'esbuild-sass-plugin';
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
+import postcssPresetEnv from 'postcss-preset-env';
 import {readdirSync, existsSync} from "fs";
 import {join, parse} from "path";
 
@@ -17,6 +20,13 @@ const options = {
     external: ['*.png', '*.svg', '*.jpg', '*.jpeg', '*.css', '*.woff']
 };
 
+const sassOptions = {
+    async transform(source, resolveDir) {
+        const {css} = await postcss([autoprefixer, postcssPresetEnv({stage: 0})]).process(source, {from: join(childPath, 'dist/css')});
+        return css
+    }
+}
+
 const childJs = {
     ...options,
     entryPoints: deDupe([...getFiles(join(childPath, 'js')), ...getFiles(join(jcorePath, 'js'))]),
@@ -26,7 +36,7 @@ const childJs = {
 const childSass = {
     ...options,
     entryPoints: deDupe([...getFiles(join(childPath, 'scss')), ...getFiles(join(jcorePath, 'scss'))]),
-    plugins: [sassPlugin()],
+    plugins: [sassPlugin(sassOptions)],
     outdir: join(childPath, 'dist/css'),
 };
 
@@ -66,7 +76,7 @@ function deDupe(files) {
     const names = [];
     return files.filter(file => {
         const path = parse(file);
-        if (! names.includes(path.name)) {
+        if (!names.includes(path.name)) {
             names.push(path.name);
             return true;
         }
