@@ -44,8 +44,12 @@ if (process.argv[2] === 'build') {
     await esbuild.build(childJs);
     await esbuild.build(childSass);
 } else if (process.argv[2] === 'watch') {
-    await (await esbuild.context(childJs)).watch();
-    await (await esbuild.context(childSass)).watch();
+    // ESbuild 0.16 syntax used until dependencies are resolved for 0.17.
+    await esbuild.build({...childJs, watch:true});
+    await esbuild.build({...childSass, watch:true});
+    // ESbuild 0.17 syntax.
+    //await (await esbuild.context(childJs)).watch();
+    //await (await esbuild.context(childSass)).watch();
 }
 
 /**

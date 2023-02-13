@@ -18,11 +18,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "esbuild": "^0.16.17",
-    "esbuild-sass-plugin": "^2.5.0",
-    "postcss": "^8.4.21",
-    "postcss-preset-env": "^8.0.1"
+    "autoprefixer": "10.4.13",
+    "esbuild": "0.16.17",
+    "esbuild-sass-plugin": "2.5.0",
+    "postcss": "8.4.21",
+    "postcss-preset-env": "8.0.1"
   },
   "dependencies": {
     "jcore": "file:wp-content/themes/jcore2"
