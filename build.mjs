@@ -1,55 +1,91 @@
 #!/usr/bin/env node
-import * as esbuild from 'esbuild';
-import {sassPlugin} from 'esbuild-sass-plugin';
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import postcssPresetEnv from 'postcss-preset-env';
-import {readdirSync, existsSync} from "fs";
-import {join, parse} from "path";
+import * as esbuild from "esbuild";
+import { sassPlugin } from "esbuild-sass-plugin";
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
+import postcssPresetEnv from "postcss-preset-env";
+import { readdirSync, readFileSync, existsSync } from "fs";
+import { join, parse } from "path";
 
-const jcorePath = join('wp-content/themes', process.env.npm_package_config_parent ?? 'jcore2');
-const childPath = join('wp-content/themes', process.env.npm_package_config_theme ?? 'jcore2-child');
+const pkg = JSON.parse(readFileSync("package.json", { encoding: "utf8" }));
+
+const jcorePath = join("wp-content/themes", pkg.config.parent ?? "jcore2");
+const childPath = join("wp-content/themes", pkg.config.theme ?? "jcore2-child");
+
+const buildData = pkg.config.build ?? {
+  scripts: [
+    {
+      entryPoints: [join(childPath, "js"), join(jcorePath, "js")],
+      outdir: join(childPath, "/dist/js"),
+    },
+  ],
+  styles: [
+    {
+      entryPoints: [join(childPath, "scss"), join(jcorePath, "scss")],
+      outdir: join(childPath, "/dist/css"),
+    },
+  ],
+};
 
 const options = {
-    bundle: true,
-    minify: true,
-    write: true,
-    sourcemap: true,
-    logLevel: 'info',
-    entryNames: '[name]',
-    external: ['*.png', '*.svg', '*.jpg', '*.jpeg', '*.css', '*.woff']
+  bundle: true,
+  minify: true,
+  write: true,
+  sourcemap: true,
+  logLevel: "info",
+  entryNames: "[name]",
+  external: ["*.png", "*.svg", "*.jpg", "*.jpeg", "*.css", "*.woff"],
 };
 
 const sassOptions = {
-    async transform(source, resolveDir) {
-        const {css} = await postcss([autoprefixer, postcssPresetEnv({stage: 0})]).process(source, {from: join(childPath, 'dist/css')});
-        return css
-    }
+  async transform(source, resolveDir) {
+    const { css } = await postcss([
+      autoprefixer,
+      postcssPresetEnv({ stage: 0 }),
+    ]).process(source, { from: join(childPath, "dist/css") });
+    return css;
+  },
+};
+
+// Scripts
+for (const script of buildData.scripts) {
+  const entries = [];
+  for (const entry of script.entryPoints) {
+    entries.push(...getFiles(entry));
+  }
+  const config = {
+    ...options,
+    entryPoints: deDupe(entries),
+    loader: { ".js": "jsx" },
+    outdir: script.outdir,
+  };
+  await build(config);
 }
 
-const childJs = {
+// Styles
+for (const style of buildData.styles) {
+  const entries = [];
+  for (const entry of style.entryPoints) {
+    entries.push(...getFiles(entry));
+  }
+  const config = {
     ...options,
-    entryPoints: deDupe([...getFiles(join(childPath, 'js')), ...getFiles(join(jcorePath, 'js'))]),
-    loader: {'.js': 'jsx'},
-    outdir: join(childPath, 'dist/js'),
-};
-const childSass = {
-    ...options,
-    entryPoints: deDupe([...getFiles(join(childPath, 'scss')), ...getFiles(join(jcorePath, 'scss'))]),
+    entryPoints: deDupe(entries),
     plugins: [sassPlugin(sassOptions)],
-    outdir: join(childPath, 'dist/css'),
-};
+    outdir: style.outdir,
+  };
+  await build(config);
+}
 
-if (process.argv[2] === 'build') {
-    await esbuild.build(childJs);
-    await esbuild.build(childSass);
-} else if (process.argv[2] === 'watch') {
+async function build(config) {
+  if (process.argv[2] === "build") {
+    await esbuild.build(config);
+  } else if (process.argv[2] === "watch") {
     // ESbuild 0.16 syntax used until dependencies are resolved for 0.17.
-    await esbuild.build({...childJs, watch:true});
-    await esbuild.build({...childSass, watch:true});
+    await esbuild.build({ ...config, watch: true });
     // ESbuild 0.17 syntax.
-    //await (await esbuild.context(childJs)).watch();
-    //await (await esbuild.context(childSass)).watch();
+    //await (await esbuild.context(config)).watch();
+  }
 }
 
 /**
@@ -59,16 +95,16 @@ if (process.argv[2] === 'build') {
  * @returns {*[]}
  */
 function getFiles(path) {
-    const files = [];
-    if (existsSync(path)) {
-        for (const file of readdirSync(path)) {
-            // Only add files not starting with _ and that has an extension.
-            if (file.substring(0, 1) !== '_' && file.split('.').length > 1) {
-                files.push(join(path, file));
-            }
-        }
+  const files = [];
+  if (existsSync(path)) {
+    for (const file of readdirSync(path)) {
+      // Only add files not starting with _ and that has an extension.
+      if (file.substring(0, 1) !== "_" && file.split(".").length > 1) {
+        files.push(join(path, file));
+      }
     }
-    return files;
+  }
+  return files;
 }
 
 /**
@@ -77,13 +113,13 @@ function getFiles(path) {
  * @return array<string>
  */
 function deDupe(files) {
-    const names = [];
-    return files.filter(file => {
-        const path = parse(file);
-        if (!names.includes(path.name)) {
-            names.push(path.name);
-            return true;
-        }
-        return false;
-    })
+  const names = [];
+  return files.filter((file) => {
+    const path = parse(file);
+    if (!names.includes(path.name)) {
+      names.push(path.name);
+      return true;
+    }
+    return false;
+  });
 }
