@@ -2,8 +2,6 @@
   "name": "jcore",
   "version": "1.2.0",
   "author": "JCO Digital <developer@jco.fi>",
-  "description": "",
-  "main": "",
   "scripts": {
     "build": "node build.mjs build",
     "watch": "node build.mjs watch"
@@ -12,11 +10,7 @@
     "parent": "jcore2",
     "theme": "jcore2-child"
   },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "license": "MIT",
+  "license": "GPL",
   "devDependencies": {
     "autoprefixer": "10.4.13",
     "esbuild": "0.16.17",
