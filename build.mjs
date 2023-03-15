@@ -34,7 +34,7 @@ const options = {
   sourcemap: true,
   logLevel: "info",
   entryNames: "[name]",
-  external: ["*.png", "*.svg", "*.jpg", "*.jpeg", "*.css", "*.woff"],
+  external: ["*.png", "*.svg", "*.jpg", "*.jpeg", "*.css", "*.woff", "*.otf"],
 };
 
 const sassOptions = {
