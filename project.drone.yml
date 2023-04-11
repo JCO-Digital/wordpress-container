@@ -6,11 +6,9 @@ steps:
     image: docker:git
     commands:
       - git config submodule.wp-content/themes/jcore2.url https://bitbucket.org/jcodigital/jcore2.git
-      - git config submodule.wp-content/themes/jcore2-child.url https://bitbucket.org/jcodigital/jcore2-child.git
-      - git submodule update --init --recursive
+      - git submodule update --init --recursive wp-content/themes/jcore2
 
   - name: composer
-    image: composer:latest
     commands:
       - composer install --no-ansi --no-dev --no-interaction --optimize-autoloader
 
