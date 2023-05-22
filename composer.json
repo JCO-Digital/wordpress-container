@@ -21,15 +21,17 @@
             "php": "8.0"
         },
         "allow-plugins": {
-            "composer/installers": true
+            "composer/installers": true,
+            "php-http/discovery": true
         }
     },
     "require": {
-        "timber/timber": "^1.22.0",
-        "jco/advanced-custom-fields-pro": "^5.10.2",
-        "jco/wp-migrate-db-pro": "^2.1.2",
-        "sentry/sentry": "^3.3.2",
-        "symfony/http-client": "^5.3",
-        "wpackagist-plugin/wordpress-seo": "^19.14"
+        "timber/timber": "^1.22.1",
+        "jco/advanced-custom-fields-pro": "^6.1.6",
+        "jco/wp-migrate-db-pro": "^2.6.6",
+        "sentry/sentry": "^3.18.2",
+        "symfony/http-client": "^v5.4.23",
+        "wpackagist-plugin/wordpress-seo": "^19.14",
+        "nyholm/psr7": "^1.8.0"
     }
 }
