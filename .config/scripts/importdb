@@ -26,7 +26,7 @@ if [ ! -f $SQLPATH/update.sql ]; then
   fi
   mkdir -p sql
   echo "Fetching DB from $REMOTEHOST"
-  wp db export ${EXCLUDE} --ssh=$REMOTEHOST --path=$REMOTEPATH - > $SQLPATH/update.sql || rm $SQLPATH/update.sql
+  wp db export ${EXCLUDE} --all-tablespaces --single-transaction --quick --lock-tables=false --ssh=$REMOTEHOST --path=$REMOTEPATH - > $SQLPATH/update.sql || rm $SQLPATH/update.sql
 fi
 
 
