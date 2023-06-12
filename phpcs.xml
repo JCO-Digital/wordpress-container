@@ -2,7 +2,6 @@
 <ruleset name="JCO">
     <description>JCO Wordpress coding standard.</description>
 
-    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
     <arg name="extensions" value="php"/>
     <arg value="p" />
 
@@ -10,6 +9,8 @@
 
     <exclude-pattern>*/.git/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>.idea/*</exclude-pattern>
     <exclude-pattern>wp-content/mu-plugins</exclude-pattern>
     <exclude-pattern>wp-content/plugins</exclude-pattern>
     <exclude-pattern>wp-content/uploads</exclude-pattern>
