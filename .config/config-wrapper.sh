@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Usually no need to edit these.
+WEBROOT="/var/www/html" # The webroot in the container.
+CHARSET="utf8mb4" # DB charset
+LOCALE="utf8mb4_unicode_ci" # DB locale used for collation and such.
+PREFIX="wp_" # WordPress DB prefix
+DB="wordpress" # DB name
+USER=$DB # DB username
+PASSWORD=$USER # DB password, this is local so weak password is ok.
+EMAIL="developer@jco.fi" # Default email for WP initial config. Not very important.
+
 if [[ -f "config.sh" ]]; then
     . config.sh
 elif [[ -f "/project/config.sh" ]]; then
@@ -23,16 +33,6 @@ fi
 if [ -z $PLUGIN_EXCLUDE ]; then
     PLUGIN_EXCLUDE=$EXCLUDE
 fi
-
-# Usually no need to edit these.
-WEBROOT="/var/www/html" # The webroot in the container.
-CHARSET="utf8mb4" # DB charset
-LOCALE="utf8mb4_unicode_ci" # DB locale used for collation and such.
-PREFIX="wp_" # WordPress DB prefix
-DB="wordpress" # DB name
-USER=$DB # DB username
-PASSWORD=$USER # DB password, this is local so weak password is ok.
-EMAIL="developer@jco.fi" # Default email for WP initial config. Not very important.
 
 # Logic stuff.
 
