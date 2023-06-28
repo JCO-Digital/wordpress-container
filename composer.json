@@ -38,6 +38,8 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "wp-coding-standards/wpcs": "dev-develop"
+        "wp-coding-standards/wpcs": "dev-develop",
+        "wpackagist-plugin/loco-translate": "^2.6",
+        "wpackagist-plugin/pattern-manager": "^0.3.0"
     }
 }
