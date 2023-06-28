@@ -5,6 +5,8 @@
     <arg name="extensions" value="php"/>
     <arg value="p" />
 
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/phpcsstandards/phpcsutils,vendor/phpcsstandards/phpcsextra" />
+
     <file>wp-content</file>
 
     <exclude-pattern>*/.git/*</exclude-pattern>
