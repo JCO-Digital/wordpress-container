@@ -6,7 +6,12 @@ if [[ -f "/vagrant/.config/config-wrapper.sh" ]]; then
 fi
 . $PROJECTPATH/.config/config-wrapper.sh
 
-if ! wp plugin is-installed --path=$WEBROOT loco-translate
+if wp plugin is-installed --path=$WEBROOT loco-translate
 then
-    wp plugin install --path=$WEBROOT --activate loco-translate
+    wp plugin activate --path=$WEBROOT loco-translate
+fi
+
+if wp plugin is-installed --path=$WEBROOT pattern-manager
+then
+    wp plugin activate --path=$WEBROOT pattern-manager
 fi
