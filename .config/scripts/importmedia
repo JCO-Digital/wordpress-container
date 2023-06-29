@@ -1,11 +1,7 @@
 #!/bin/bash
 
-TLD="localhost"
 PROJECTPATH="/project"
-if [[ -f "/vagrant/.config/config-wrapper.sh" ]]; then
-  TLD="test"
-  PROJECTPATH="/vagrant"
-fi
+
 . $PROJECTPATH/.config/config-wrapper.sh
 
 echo "Syncing media"
