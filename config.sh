@@ -40,6 +40,7 @@ PLUGIN_EXCLUDE=(
     'minimal-coming-soon-maintenance-mode'
     'coming-soon'
     'loco-translate'
+    'pattern-manager'
     'hyperdb'
     'hyperdb-1-1'
 )
