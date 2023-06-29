@@ -48,5 +48,10 @@ PLUGIN_EXCLUDE=(
 # So these should always be local.
 PLUGIN_GIT=(
 )
+# Activate these plugins locally after sync.
+LOCAL_PLUGINS=(
+    'loco-translate'
+    'pattern-manager'
+)
 # Set this to "composer" for projects where composer is used to install plugins.
 PLUGIN_INSTALL="remote"
