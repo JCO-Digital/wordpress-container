@@ -9,6 +9,11 @@ DB="wordpress" # DB name
 USER=$DB # DB username
 PASSWORD=$USER # DB password, this is local so weak password is ok.
 EMAIL="developer@jco.fi" # Default email for WP initial config. Not very important.
+# Backwards compatibility defaults for old projects.
+LOCAL_PLUGINS=(
+    'loco-translate'
+    'pattern-manager'
+)
 
 if [[ -f "config.sh" ]]; then
     . config.sh
