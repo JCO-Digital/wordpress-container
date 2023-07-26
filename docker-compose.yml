@@ -40,6 +40,8 @@ services:
   wordpress:
     depends_on:
       - db
+    links:
+      - memcached
     image: "jcodigi/wordpress:latest"
     user: "1000"
     environment:
@@ -63,6 +65,9 @@ services:
     networks:
       - default
       - jcore
+  
+  memcached:
+    image: "memcached:1.6.21"
 
   mailhog:
     image: "mailhog/mailhog:latest"
