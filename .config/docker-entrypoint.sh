@@ -16,6 +16,7 @@ if [[ ! -f "$WEBROOT/wp-config.php" ]]; then
   echo "wp config create --path=$WEBROOT --dbhost=$WORDPRESS_DB_HOST --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER --dbpass=$WORDPRESS_DB_PASSWORD --dbcharset=$CHARSET --dbprefix=$PREFIX"
   wp config create --path=$WEBROOT --dbhost=$WORDPRESS_DB_HOST --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER --dbpass=$WORDPRESS_DB_PASSWORD --dbcharset=$CHARSET --dbprefix=$PREFIX
   wp config set --path=$WEBROOT --type=constant JCORE_IS_LOCAL true
+  wp config set memcached_servers "array( array( 'memcached', 11211 ) )" --raw --type=variable
   echo "Creating DB."
   wp db create --path=$WEBROOT
   echo "wp db create --path=$WEBROOT"
