@@ -68,6 +68,7 @@ services:
   
   memcached:
     image: "memcached:1.6.21"
+    command: ["-m", "64m"]
 
   mailhog:
     image: "mailhog/mailhog:latest"
