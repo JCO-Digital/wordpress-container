@@ -40,9 +40,10 @@ services:
   wordpress:
     depends_on:
       - db
+      - tlscerts
     links:
       - memcached
-    image: "jcodigi/wordpress:latest"
+    image: "jcodigi/wordpress:8"
     user: "1000"
     environment:
       WORDPRESS_DB_HOST: "db:3306"
@@ -60,6 +61,7 @@ services:
       - ./config.sh:/project/config.sh
       - ./.config:/project/.config
       - ~/.config/jcore/ssh:/home/jcore/.ssh
+      - ~/.config/jcore/ssl:/home/jcore/ssl
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
