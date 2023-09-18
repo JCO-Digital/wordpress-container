@@ -29,8 +29,8 @@ if [[ ! -f "$WEBROOT/wp-config.php" ]]; then
 fi
 
 # Add WP_HOME and WP_SITEURL to wp-config.php
-wp config set --path=$WEBROOT --type=constant WP_HOME "http://$DOMAINNAME"
-wp config set --path=$WEBROOT --type=constant WP_SITEURL "http://$DOMAINNAME"
+wp config set --path=$WEBROOT --type=constant WP_HOME "https://$DOMAINNAME"
+wp config set --path=$WEBROOT --type=constant WP_SITEURL "https://$DOMAINNAME"
 wp config set --path=$WEBROOT --type=constant WP_DEBUG true
 wp config set --path=$WEBROOT --type=constant JCORE_IS_LOCAL true
 
