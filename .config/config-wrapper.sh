@@ -41,6 +41,12 @@ fi
 if [ -z $DEBUG ]; then
   DEBUG=true
 fi
+if [ -z $DEBUG_LOG ]; then
+  DEBUG=false
+fi
+if [ -z $DEBUG_DISPLAY ]; then
+  DEBUG=true
+fi
 
 # Logic stuff.
 

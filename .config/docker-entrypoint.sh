@@ -32,6 +32,8 @@ fi
 wp config set --path=$WEBROOT --type=constant WP_HOME "https://$DOMAINNAME"
 wp config set --path=$WEBROOT --type=constant WP_SITEURL "https://$DOMAINNAME"
 wp config set --path=$WEBROOT --type=constant WP_DEBUG $DEBUG --raw
+wp config set --path=$WEBROOT --type=constant WP_DEBUG_LOG $DEBUG_LOG --raw
+wp config set --path=$WEBROOT --type=constant WP_DEBUG_DISPLAY $DEBUG_DISPLAY --raw
 wp config set --path=$WEBROOT --type=constant JCORE_IS_LOCAL true --raw
 
 /project/.config/scripts/appendssl
