@@ -38,6 +38,9 @@ fi
 if [ -z $PLUGIN_EXCLUDE ]; then
     PLUGIN_EXCLUDE=$EXCLUDE
 fi
+if [ -z $DEBUG ]; then
+  DEBUG=true
+fi
 
 # Logic stuff.
 

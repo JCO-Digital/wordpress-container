@@ -55,3 +55,6 @@ LOCAL_PLUGINS=(
 )
 # Set this to "composer" for projects where composer is used to install plugins.
 PLUGIN_INSTALL="remote"
+
+# Set this to false if you want to disable debug mode in WP in local environment.
+DEBUG=true
