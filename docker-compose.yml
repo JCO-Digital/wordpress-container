@@ -43,7 +43,7 @@ services:
       - tlscerts
     links:
       - memcached
-    image: "jcodigi/wordpress:8"
+    image: "jcodigi/wordpress:8.2"
     user: "1000"
     environment:
       WORDPRESS_DB_HOST: "db:3306"
