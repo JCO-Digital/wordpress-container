@@ -28,11 +28,11 @@
     },
     "require": {
         "timber/timber": "^1.22.1",
-        "jco/advanced-custom-fields-pro": "^6.1.6",
+        "jco/advanced-custom-fields-pro": "^6.2",
         "jco/wp-migrate-db-pro": "^2.6.6",
         "sentry/sentry": "^3.18.2",
         "symfony/http-client": "^v5.4.23",
-        "wpackagist-plugin/wordpress-seo": "^19.14",
+        "wpackagist-plugin/wordpress-seo": "^21.4",
         "nyholm/psr7": "^1.8.0"
     },
     "require-dev": {
