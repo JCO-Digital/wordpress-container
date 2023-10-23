@@ -38,14 +38,14 @@ fi
 if [ -z $PLUGIN_EXCLUDE ]; then
     PLUGIN_EXCLUDE=$EXCLUDE
 fi
-if [ -z $DEBUG ]; then
-  DEBUG=true
+if [ -z $WP_DEBUG ]; then
+  WP_DEBUG=true
 fi
-if [ -z $DEBUG_LOG ]; then
-  DEBUG=false
+if [ -z $WP_DEBUG_LOG ]; then
+  WP_DEBUG_LOG=false
 fi
-if [ -z $DEBUG_DISPLAY ]; then
-  DEBUG=true
+if [ -z $WP_DEBUG_DISPLAY ]; then
+  WP_DEBUG_DISPLAY=true
 fi
 
 # Logic stuff.

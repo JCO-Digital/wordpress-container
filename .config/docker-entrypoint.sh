@@ -31,9 +31,9 @@ fi
 # Add WP_HOME and WP_SITEURL to wp-config.php
 wp config set --path=$WEBROOT --type=constant WP_HOME "https://$DOMAINNAME"
 wp config set --path=$WEBROOT --type=constant WP_SITEURL "https://$DOMAINNAME"
-wp config set --path=$WEBROOT --type=constant WP_DEBUG $DEBUG --raw
-wp config set --path=$WEBROOT --type=constant WP_DEBUG_LOG $DEBUG_LOG --raw
-wp config set --path=$WEBROOT --type=constant WP_DEBUG_DISPLAY $DEBUG_DISPLAY --raw
+wp config set --path=$WEBROOT --type=constant WP_DEBUG $WP_DEBUG --raw
+wp config set --path=$WEBROOT --type=constant WP_DEBUG_LOG $WP_DEBUG_LOG --raw
+wp config set --path=$WEBROOT --type=constant WP_DEBUG_DISPLAY $WP_DEBUG_DISPLAY --raw
 wp config set --path=$WEBROOT --type=constant JCORE_IS_LOCAL true --raw
 
 /project/.config/scripts/appendssl

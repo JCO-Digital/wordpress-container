@@ -57,6 +57,6 @@ LOCAL_PLUGINS=(
 PLUGIN_INSTALL="remote"
 
 # Set DEBUG to false if you want to disable debug mode in WP in local environment.
-DEBUG=true
-DEBUG_LOG=false
-DEBUG_DISPLAY=true
+WP_DEBUG=true
+WP_DEBUG_LOG=false
+WP_DEBUG_DISPLAY=true
