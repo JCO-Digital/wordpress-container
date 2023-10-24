@@ -14,4 +14,4 @@
 
 # Always convert script files to unix line endings.
 *.sh     text eol=lf
-/.config/scripts/* text eol=lf
+/.setup/scripts/* text eol=lf

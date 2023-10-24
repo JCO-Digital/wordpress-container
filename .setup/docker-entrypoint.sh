@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source /project/.config/config-wrapper.sh
+source /project/.setup/config-wrapper.sh
 
 # Create Private / Public key if it doesn't exist
 if [ ! -f ~/.ssh/id_ed25519 ]; then

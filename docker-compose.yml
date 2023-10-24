@@ -9,7 +9,7 @@ services:
     image: "jcodigi/tlscerts:latest"
     volumes:
       - ./config.sh:/project/config.sh
-      - ./.config:/project/.config
+      - ./.setup:/project/.setup
       - ./.jcore/ssl:/home/jcore/ssl
       - ~/.config/jcore/ssl:/home/jcore/ca
 
@@ -50,8 +50,6 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DEBUG: 1
-      WORDPRESS_CONFIG_EXTRA: define( 'FS_METHOD', 'direct' );
     volumes:
       - ./.jcore/wordpress:/var/www/html
       - ./.jcore/sql:/project/.jcore/sql
@@ -59,7 +57,7 @@ services:
       - ./wp-content:/var/www/html/wp-content
       - ./vendor:/var/www/html/vendor
       - ./config.sh:/project/config.sh
-      - ./.config:/project/.config
+      - ./.setup:/project/.setup
       - ~/.config/jcore/ssh:/home/jcore/.ssh
       - ~/.config/jcore/ssl:/home/jcore/ssl
     extra_hosts:
@@ -92,7 +90,7 @@ services:
       - ./.jcore/wordpress:/var/www/html
       - ./.jcore/ssl:/etc/ssl
       - ./wp-content:/var/www/html/wp-content
-      - ./.config/nginx:/etc/nginx/conf.d/
+      - ./.setup/nginx:/etc/nginx/conf.d/
     ports:
       - "80:80"
       - "443:443"

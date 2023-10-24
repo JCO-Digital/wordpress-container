@@ -3,7 +3,7 @@
 TLD="localhost"
 PROJECTPATH="/project"
 
-. $PROJECTPATH/.config/config-wrapper.sh
+. $PROJECTPATH/.setup/config-wrapper.sh
 
 SQLPATH="$PROJECTPATH/.jcore/sql"
 
