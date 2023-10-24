@@ -4,7 +4,8 @@
   "author": "JCO Digital <developer@jco.fi>",
   "scripts": {
     "build": "node build.mjs build",
-    "watch": "node build.mjs watch"
+    "watch": "node build.mjs watch",
+    "postversion": "git push && git push --tags"
   },
   "config": {
     "parent": "jcore2",
