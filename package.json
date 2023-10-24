@@ -1,6 +1,6 @@
 {
   "name": "jcore",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "JCO Digital <developer@jco.fi>",
   "scripts": {
     "build": "node build.mjs build",
