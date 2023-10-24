@@ -13,7 +13,7 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v3
-    - run: git archive --format=zip --output=main.zip main
+    - run: git archive --format=zip --output=release.zip $GITHUB_REF
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "main.zip"
+        artifacts: "release.zip"
