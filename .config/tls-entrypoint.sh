@@ -1,5 +1,5 @@
 #!/bin/bash
-. /project/.setup/config-wrapper.sh
+. /project/.config/config-wrapper.sh
 
 # Specify where we will install the certificate
 CERT_DIR="/home/jcore/ca"

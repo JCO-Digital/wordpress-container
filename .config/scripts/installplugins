@@ -2,7 +2,7 @@
 
 PROJECTPATH="/project"
 
-. $PROJECTPATH/.setup/config-wrapper.sh
+. $PROJECTPATH/.config/config-wrapper.sh
 
 for PLUGIN in "${LOCAL_PLUGINS[@]}" ; do
   if wp plugin is-installed --path="$WEBROOT" "$PLUGIN"

@@ -2,7 +2,7 @@
 
 PROJECTPATH="/project"
 
-. $PROJECTPATH/.setup/config-wrapper.sh
+. $PROJECTPATH/.config/config-wrapper.sh
 
 if [[ "$PLUGIN_INSTALL" == "composer" ]]; then
   echo "Project set to composer plugins install, skipping plugins."
