@@ -9,7 +9,7 @@ services:
     image: "jcodigi/tlscerts:latest"
     volumes:
       - ./config.sh:/project/config.sh
-      - ./.setup:/project/.setup
+      - ./.config:/project/.config
       - ./.jcore/ssl:/home/jcore/ssl
       - ~/.config/jcore/ssl:/home/jcore/ca
 
@@ -57,7 +57,7 @@ services:
       - ./wp-content:/var/www/html/wp-content
       - ./vendor:/var/www/html/vendor
       - ./config.sh:/project/config.sh
-      - ./.setup:/project/.setup
+      - ./.config:/project/.config
       - ~/.config/jcore/ssh:/home/jcore/.ssh
       - ~/.config/jcore/ssl:/home/jcore/ssl
     extra_hosts:
@@ -65,7 +65,7 @@ services:
     networks:
       - default
       - jcore
-  
+
   memcached:
     image: "memcached:1.6.21"
     command: ["-m", "64m"]
@@ -90,7 +90,7 @@ services:
       - ./.jcore/wordpress:/var/www/html
       - ./.jcore/ssl:/etc/ssl
       - ./wp-content:/var/www/html/wp-content
-      - ./.setup/nginx:/etc/nginx/conf.d/
+      - ./.config/nginx:/etc/nginx/conf.d/
     ports:
       - "80:80"
       - "443:443"
