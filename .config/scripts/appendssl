@@ -7,6 +7,6 @@ if [ $? -ne 0 ]; then
   exit 0
 fi
 
-# Add our /home/jcore/ssl/jcoCA.pem file to the trusted CA bundle
-sudo cp /home/jcore/ssl/jcoCA.pem /usr/local/share/ca-certificates/jcoCA.crt
+# Add our $CERT_DIR/jcoCA.pem file to the trusted CA bundle
+sudo cp $CERT_DIR/jcoCA.pem /usr/local/share/ca-certificates/jcoCA.crt
 sudo update-ca-certificates

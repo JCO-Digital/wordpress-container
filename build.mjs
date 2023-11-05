@@ -7,12 +7,12 @@ import postcssPresetEnv from "postcss-preset-env";
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { join, parse } from "path";
 
-const pkg = JSON.parse(readFileSync("package.json", { encoding: "utf8" }));
+const config = JSON.parse(readFileSync("config.json", { encoding: "utf8" }));
 
-const jcorePath = join("wp-content/themes", pkg.config.parent ?? "jcore2");
-const childPath = join("wp-content/themes", pkg.config.theme ?? "jcore2-child");
+const jcorePath = join("wp-content/themes", config.parent ?? "jcore2");
+const childPath = join("wp-content/themes", config.theme ?? "jcore2-child");
 
-const buildData = pkg.config.build ?? {
+const buildData = config.build ?? {
   scripts: [
     {
       entryPoints: [join(childPath, "js"), join(jcorePath, "js")],

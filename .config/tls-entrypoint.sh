@@ -1,9 +1,4 @@
 #!/bin/bash
-. /project/.config/config-wrapper.sh
-
-# Specify where we will install the certificate
-CERT_DIR="/home/jcore/ca"
-SSL_DIR="/home/jcore/ssl"
 
 # This should be blank to allow webserver to start
 PASSPHRASE=""
@@ -41,21 +36,17 @@ fi
 
 # Create host key and cert if they don't exist
 if [ ! -f "$SSL_DIR/host.key" ]; then
+  echo "Creating host key."
 
   DNS=1
   ALTNAME="DNS.${DNS} = localhost"
-  for domainRecord in ${DOMAINS[@]}; do
-    domain=(${domainRecord//;/ })
-    hostName=${domain[1]}
-    if [ ${#hostName} -eq 0 ]; then
-      hostName=${domain[0]}
-    fi
+  for hostName in ${DOMAINS}; do
     DNS=$((DNS + 1))
     ALTNAME="$ALTNAME
-  DNS.${DNS} = ${hostName}.localhost"
+  DNS.${DNS} = ${hostName}"
     DNS=$((DNS + 1))
     ALTNAME="$ALTNAME
-  DNS.${DNS} = *.${hostName}.localhost"
+  DNS.${DNS} = *.${hostName}"
   done
 
   echo "[req]
@@ -72,7 +63,7 @@ if [ ! -f "$SSL_DIR/host.key" ]; then
   O = JCO Digital
   OU = Hosting
   emailAddress = developer@jco.fi
-  CN = $DOMAINNAME
+  CN = $LOCAL_DOMAIN
 
   [v3_req]
   subjectAltName = @alt_names
@@ -80,6 +71,7 @@ if [ ! -f "$SSL_DIR/host.key" ]; then
   [alt_names]
   $ALTNAME
   " >"$SSL_DIR/host.conf"
+  cat $SSL_DIR/host.conf
 
   echo "authorityKeyIdentifier=keyid,issuer
   basicConstraints=CA:FALSE
@@ -89,6 +81,7 @@ if [ ! -f "$SSL_DIR/host.key" ]; then
   [alt_names]
   $ALTNAME
   " >"$SSL_DIR/v3.ext"
+  cat $SSL_DIR/v3.ext
 
   # Generate the Private Key
   openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:2048 -out "$SSL_DIR/host.key"

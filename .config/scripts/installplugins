@@ -1,10 +1,6 @@
 #!/bin/bash
 
-PROJECTPATH="/project"
-
-. $PROJECTPATH/.config/config-wrapper.sh
-
-for PLUGIN in "${LOCAL_PLUGINS[@]}" ; do
+for PLUGIN in $PLUGIN_LOCAL ; do
   if wp plugin is-installed --path="$WEBROOT" "$PLUGIN"
   then
       wp plugin activate --path="$WEBROOT" "$PLUGIN"

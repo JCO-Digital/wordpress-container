@@ -7,6 +7,11 @@ services:
   # Container to create certs and exit.
   tlscerts:
     image: "jcodigi/tlscerts:latest"
+    environment:
+      CERT_DIR: "/home/jcore/ca"
+      SSL_DIR: "/home/jcore/ssl"
+      LOCAL_DOMAIN: ${LOCAL_DOMAIN}
+      DOMAINS: ${DOMAINS}
     volumes:
       - ./config.sh:/project/config.sh
       - ./.config:/project/.config
@@ -18,9 +23,9 @@ services:
     image: "mariadb:latest"
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
     volumes:
       - db:/var/lib/mysql
     networks:
@@ -29,37 +34,37 @@ services:
   # Adminer running on port 1080
   adminer:
     depends_on:
-      - db
+      db:
+        condition: service_started
     image: adminer:latest
     ports:
       - 1080:8080
     networks:
       - default
 
-  # PHP-fpm container with Wordpress stuff.
+  # PHP-fpm container with WordPress stuff.
   wordpress:
     depends_on:
-      - db
-      - tlscerts
+      db:
+        condition: service_started
+      tlscerts:
+        condition: service_completed_successfully
     links:
       - memcached
-    image: "jcodigi/wordpress:8.2"
+    image: "jcodigi/wordpress:latest"
     user: "1000"
     environment:
-      WORDPRESS_DB_HOST: "db:3306"
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      CERT_DIR: "/home/jcore/ca"
+    env_file: .env
     volumes:
       - ./.jcore/wordpress:/var/www/html
       - ./.jcore/sql:/project/.jcore/sql
       - ./.jcore/php.ini:/usr/local/etc/php/php.ini
       - ./wp-content:/var/www/html/wp-content
       - ./vendor:/var/www/html/vendor
-      - ./config.sh:/project/config.sh
       - ./.config:/project/.config
       - ~/.config/jcore/ssh:/home/jcore/.ssh
-      - ~/.config/jcore/ssl:/home/jcore/ssl
+      - ~/.config/jcore/ssl:/home/jcore/ca
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
@@ -79,9 +84,12 @@ services:
   # Nginx server configuration
   web:
     depends_on:
-      - db
-      - wordpress
-      - tlscerts
+      db:
+        condition: service_started
+      wordpress:
+        condition: service_started
+      tlscerts:
+        condition: service_completed_successfully
     image: nginx:latest
     links:
       - db

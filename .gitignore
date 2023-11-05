@@ -14,6 +14,7 @@
 *.log
 /vendor/
 /.jcore/
+.env
 
 ### VisualStudioCode template
 .vscode/*

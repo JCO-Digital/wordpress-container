@@ -1,8 +1,4 @@
 #!/bin/bash
 
-PROJECTPATH="/project"
-
-. $PROJECTPATH/.config/config-wrapper.sh
-
 echo "Syncing media"
 rsync -r --delete --info=progress2 --no-inc-recursive ${REMOTEHOST}:${REMOTEPATH}/wp-content/uploads/ $WEBROOT/wp-content/uploads/ --exclude=wp-migrate-db
