@@ -7,10 +7,6 @@
     "watch": "node build.mjs watch",
     "postversion": "git push && git push --tags"
   },
-  "config": {
-    "parent": "jcore2",
-    "theme": "jcore2-child"
-  },
   "license": "GPL",
   "devDependencies": {
     "autoprefixer": "10.4.13",
