@@ -37,7 +37,7 @@ if [ -f $SQLPATH/update.sql ]; then
     replace=(${replaceRecord//,/ })
     if [[ ${#replace[*]} -ge 2 ]]; then
       echo "Replace ${replace[0]} with ${replace[1]}"
-      wp search-replace --path=$WEBROOT "//${replace[0]}" "//${replace[1]}"  --recurse-objects --report-changed-only --skip-columns=guid
+      wp search-replace --path=$WEBROOT "${replace[0]}" "${replace[1]}"  --recurse-objects --report-changed-only --skip-columns=guid
     fi
   done
 fi

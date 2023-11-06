@@ -13,7 +13,6 @@ services:
       LOCAL_DOMAIN: ${LOCAL_DOMAIN}
       DOMAINS: ${DOMAINS}
     volumes:
-      - ./config.sh:/project/config.sh
       - ./.config:/project/.config
       - ./.jcore/ssl:/home/jcore/ssl
       - ~/.config/jcore/ssl:/home/jcore/ca
