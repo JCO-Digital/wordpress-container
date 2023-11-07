@@ -13,6 +13,7 @@
   "wordpress_admin_user": "admin",
   "wordpress_admin_email": "developer@jco.fi",
   "wordpress_admin_password": "wordpress",
+  "wordpress_image": "jcodigi/wordpress:latest",
   "plugin_local": ["loco-translate","pattern-manager"],
   "plugin_exclude": ["minimal-coming-soon-maintenance-mode","coming-soon","hyperdb","hyperdb-1-1"],
   "plugin_git": [],

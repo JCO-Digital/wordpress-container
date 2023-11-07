@@ -50,7 +50,7 @@ services:
         condition: service_completed_successfully
     links:
       - memcached
-    image: "jcodigi/wordpress:latest"
+    image: ${WORDPRESS_IMAGE}
     user: "1000"
     environment:
       CERT_DIR: "/home/jcore/ca"
@@ -105,7 +105,7 @@ services:
       default:
       jcore:
         aliases:
-          - docker.localhost # Can and should be changed for wp-cron to work correctly, the correct value is [projectname].localhost
+          - ${LOCAL_DOMAIN}
 
 volumes:
   db:
