@@ -15,6 +15,7 @@
 /vendor/
 /.jcore/
 .env
+.local*
 
 ### VisualStudioCode template
 .vscode/*
