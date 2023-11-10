@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "Syncing media"
-rsync -r --delete --info=progress2 --no-inc-recursive ${REMOTEHOST}:${REMOTEPATH}/wp-content/uploads/ $WEBROOT/wp-content/uploads/ --exclude=wp-migrate-db
+rsync -r --delete --info=progress2 --no-inc-recursive "${REMOTEHOST}:${REMOTEPATH}/wp-content/uploads/" "$WEBROOT/wp-content/uploads/" --exclude=wp-migrate-db

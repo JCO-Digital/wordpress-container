@@ -10,7 +10,7 @@ services:
     environment:
       CERT_DIR: "/home/jcore/ca"
       SSL_DIR: "/home/jcore/ssl"
-      LOCAL_DOMAIN: ${LOCAL_DOMAIN}
+      DOMAIN: ${DOMAIN}
       DOMAINS: ${DOMAINS}
     volumes:
       - ./.config:/project/.config
@@ -22,9 +22,9 @@ services:
     image: "mariadb:latest"
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
-      MYSQL_USER: ${WORDPRESS_DB_USER}
-      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      MYSQL_DATABASE: ${WP_DB_NAME}
+      MYSQL_USER: ${WP_DB_USER}
+      MYSQL_PASSWORD: ${WP_DB_PASSWORD}
     volumes:
       - db:/var/lib/mysql
     networks:
@@ -50,7 +50,7 @@ services:
         condition: service_completed_successfully
     links:
       - memcached
-    image: ${WORDPRESS_IMAGE}
+    image: ${WP_IMAGE}
     user: "1000"
     environment:
       CERT_DIR: "/home/jcore/ca"
@@ -105,7 +105,7 @@ services:
       default:
       jcore:
         aliases:
-          - ${LOCAL_DOMAIN}
+          - ${DOMAIN}
 
 volumes:
   db:
