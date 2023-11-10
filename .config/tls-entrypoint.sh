@@ -71,7 +71,7 @@ if [ ! -f "$SSL_DIR/host.key" ]; then
   [alt_names]
   $ALTNAME
   " >"$SSL_DIR/host.conf"
-  cat $SSL_DIR/host.conf
+  cat "$SSL_DIR/host.conf"
 
   echo "authorityKeyIdentifier=keyid,issuer
   basicConstraints=CA:FALSE
@@ -81,7 +81,7 @@ if [ ! -f "$SSL_DIR/host.key" ]; then
   [alt_names]
   $ALTNAME
   " >"$SSL_DIR/v3.ext"
-  cat $SSL_DIR/v3.ext
+  cat "$SSL_DIR/v3.ext"
 
   # Generate the Private Key
   openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:2048 -out "$SSL_DIR/host.key"
@@ -93,4 +93,4 @@ if [ ! -f "$SSL_DIR/host.key" ]; then
   openssl x509 -req -extfile "$SSL_DIR/v3.ext" -days 365 -in "$SSL_DIR/host.csr" -CA "$CERT_DIR/jcoCA.pem" -CAkey "$CERT_DIR/jcoCA.key" -CAcreateserial -out "$SSL_DIR/host.crt" -sha256 -passin "file:$CERT_DIR/password.txt"
 fi
 
-chown -R jcore:jcore $CERT_DIR $SSL_DIR
+chown -R jcore:jcore "$CERT_DIR" "$SSL_DIR"

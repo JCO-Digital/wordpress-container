@@ -17,8 +17,8 @@ if [ ! -f $SQLPATH/update.sql ]; then
     exclude=`echo ${ARGS} | sed s/,$//`
   fi
   mkdir -p sql
-  echo "Fetching DB from $REMOTEHOST"
-  wp db export ${exclude} --all-tablespaces --single-transaction --quick --lock-tables=false --ssh=$REMOTEHOST --path=$REMOTEPATH - > $SQLPATH/update.sql || rm $SQLPATH/update.sql
+  echo "Fetching DB from $REMOTE_HOST"
+  wp db export ${exclude} --all-tablespaces --single-transaction --quick --lock-tables=false --ssh="$REMOTE_HOST" --path="$REMOTE_PATH" - > "$SQLPATH/update.sql" || rm "$SQLPATH/update.sql"
 fi
 
 if [ -f "$SQLPATH/update.sql" ]; then
@@ -34,10 +34,10 @@ if [ -f "$SQLPATH/update.sql" ]; then
   mv "$SQLPATH/update.sql" "$SQLPATH/db.sql"
 
   for replaceRecord in $REPLACE; do
-    record=(${replaceRecord//,/ })
+    record=(${replaceRecord//|/ })
     if [[ ${#record[*]} -ge 2 ]]; then
-      echo "Replace ${replace[0]} with ${record[1]}"
-      wp search-replace --path="$WEROOT" "${record[0]}" "${replace[1]}"  --recurse-objects --report-changed-only --skip-columns=guid
+      echo "Replace ${record[0]} with ${record[1]}"
+      wp search-replace --path="$WEBROOT" "${record[0]}" "${record[1]}"  --recurse-objects --report-changed-only --skip-columns=guid
     fi
   done
 fi

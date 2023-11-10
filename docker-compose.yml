@@ -10,7 +10,7 @@ services:
     environment:
       CERT_DIR: "/home/jcore/ca"
       SSL_DIR: "/home/jcore/ssl"
-      DOMAIN: ${DOMAIN}
+      LOCAL_DOMAIN: ${LOCAL_DOMAIN}
       DOMAINS: ${DOMAINS}
     volumes:
       - ./.config:/project/.config
@@ -105,7 +105,7 @@ services:
       default:
       jcore:
         aliases:
-          - ${DOMAIN}
+          - ${LOCAL_DOMAIN}
 
 volumes:
   db:
