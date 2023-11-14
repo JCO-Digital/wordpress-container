@@ -13,7 +13,7 @@ services:
       LOCAL_DOMAIN: ${LOCAL_DOMAIN}
       DOMAINS: ${DOMAINS}
     volumes:
-      - ./.config:/project/.config
+      - .:/project
       - ./.jcore/ssl:/home/jcore/ssl
       - ~/.config/jcore/ssl:/home/jcore/ca
 
@@ -56,12 +56,11 @@ services:
       CERT_DIR: "/home/jcore/ca"
     env_file: .env
     volumes:
+      - .:/project
       - ./.jcore/wordpress:/var/www/html
-      - ./.jcore/sql:/project/.jcore/sql
       - ./.jcore/php.ini:/usr/local/etc/php/php.ini
       - ./wp-content:/var/www/html/wp-content
       - ./vendor:/var/www/html/vendor
-      - ./.config:/project/.config
       - ~/.config/jcore/ssh:/home/jcore/.ssh
       - ~/.config/jcore/ssl:/home/jcore/ca
     extra_hosts:
