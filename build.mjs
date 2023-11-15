@@ -7,7 +7,7 @@ import postcssPresetEnv from "postcss-preset-env";
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { join, parse } from "path";
 
-const config = JSON.parse(readFileSync("jcore.json", { encoding: "utf8" }));
+const config = JSON.parse(readFileSync("build.json", { encoding: "utf8" }));
 
 const jcorePath = join("wp-content/themes", config.parent ?? "jcore2");
 const childPath = join("wp-content/themes", config.theme ?? "jcore2-child");
