@@ -6,8 +6,18 @@ import autoprefixer from "autoprefixer";
 import postcssPresetEnv from "postcss-preset-env";
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { join, parse } from "path";
+import { parse as tomlParse } from "smol-toml";
 
-const config = JSON.parse(readFileSync("build.json", { encoding: "utf8" }));
+const config = {};
+if (existsSync("defaults.toml")) {
+  Object.assign(config, tomlParse(readFileSync("defaults.toml", "utf8")));
+}
+if (existsSync("jcore.toml")) {
+  Object.assign(config, tomlParse(readFileSync("jcore.toml", "utf8")));
+}
+if (existsSync(".localConfig.toml")) {
+  Object.assign(config, tomlParse(readFileSync(".localConfig.toml", "utf8")));
+}
 
 const jcorePath = join("wp-content/themes", config.parent ?? "jcore2");
 const childPath = join("wp-content/themes", config.theme ?? "jcore2-child");
@@ -34,7 +44,16 @@ const options = {
   sourcemap: true,
   logLevel: "info",
   entryNames: "[name]",
-  external: ["*.png", "*.svg", "*.jpg", "*.jpeg", "*.css", "*.woff", "*.woff2", "*.otf"],
+  external: [
+    "*.png",
+    "*.svg",
+    "*.jpg",
+    "*.jpeg",
+    "*.css",
+    "*.woff",
+    "*.woff2",
+    "*.otf",
+  ],
 };
 
 const sassOptions = {
