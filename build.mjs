@@ -4,11 +4,14 @@ import { sassPlugin } from "esbuild-sass-plugin";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 import postcssPresetEnv from "postcss-preset-env";
-import { readdirSync, readFileSync, existsSync } from "fs";
-import { join, parse } from "path";
+import { readdirSync, readFileSync, existsSync } from "node:fs";
+import { join, parse } from "node:path";
 import { parse as tomlParse } from "smol-toml";
 
-const config = {};
+const config = {
+    parent: "jcore2",
+    theme: "jcore2-child"
+};
 if (existsSync("defaults.toml")) {
   Object.assign(config, tomlParse(readFileSync("defaults.toml", "utf8")));
 }
@@ -19,23 +22,26 @@ if (existsSync(".localConfig.toml")) {
   Object.assign(config, tomlParse(readFileSync(".localConfig.toml", "utf8")));
 }
 
-const jcorePath = join("wp-content/themes", config.parent ?? "jcore2");
-const childPath = join("wp-content/themes", config.theme ?? "jcore2-child");
+const jcorePath = join("wp-content/themes", config.parent);
+const childPath = join("wp-content/themes", config.theme);
 
-const buildData = config.build ?? {
-  scripts: [
-    {
-      entryPoints: [join(childPath, "js"), join(jcorePath, "js")],
-      outdir: join(childPath, "/dist/js"),
-    },
-  ],
-  styles: [
-    {
-      entryPoints: [join(childPath, "scss"), join(jcorePath, "scss")],
-      outdir: join(childPath, "/dist/css"),
-    },
-  ],
+const buildData = {
+    scripts: [
+        {
+            entryPoints: [join(childPath, "js"), join(jcorePath, "js")],
+            outdir: join(childPath, "/dist/js"),
+        },
+    ],
+    styles: [
+        {
+            entryPoints: [join(childPath, "scss"), join(jcorePath, "scss")],
+            outdir: join(childPath, "/dist/css"),
+        },
+    ],
 };
+if (existsSync("build.toml")) {
+    Object.assign(buildData, tomlParse(readFileSync("build.toml", "utf8")));
+}
 
 const options = {
   bundle: true,
