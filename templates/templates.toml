@@ -1,0 +1,11 @@
+[jcore2]
+branch = "grasshopper"
+branches = ["elduelo", "fluffycritter", "grasshopper"]
+
+[jcore3]
+branch = "gintonic"
+branches = ["gintonic"]
+
+[blank]
+branch = ""
+branches = []
