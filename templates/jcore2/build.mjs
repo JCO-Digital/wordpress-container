@@ -2,7 +2,6 @@
 import * as esbuild from "esbuild";
 import { sassPlugin } from "esbuild-sass-plugin";
 import postcss from "postcss";
-import autoprefixer from "autoprefixer";
 import postcssPresetEnv from "postcss-preset-env";
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join, parse } from "node:path";
@@ -65,8 +64,7 @@ const options = {
 const sassOptions = {
   async transform(source, resolveDir) {
     const { css } = await postcss([
-      autoprefixer,
-      postcssPresetEnv({ stage: 0 }),
+      postcssPresetEnv({ stage: 2 }),
     ]).process(source, { from: join(childPath, "dist/css") });
     return css;
   },
