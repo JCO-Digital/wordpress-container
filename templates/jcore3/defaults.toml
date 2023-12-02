@@ -1,0 +1,11 @@
+branch = "gintonic"
+theme =  "jcore-ilme"
+wpImage = "jcodigi/wordpress:latest"
+pluginLocal = [ "loco-translate", "pattern-manager" ]
+pluginExclude = [ "minimal-coming-soon-maintenance-mode", "coming-soon", "hyperdb", "hyperdb-1-1" ]
+dbExclude = [ "relevanssi" ]
+remoteDomain = "localhost"
+localDomain = "localhost"
+wpDebug = true
+wpDebugLog = false
+wpDebugDisplay = true
