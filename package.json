@@ -1,12 +1,9 @@
 {
   "name": "wordpress-container",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "author": "JCO Digital <developer@jco.fi>",
   "scripts": {
     "postversion": "git push && git push --tags"
   },
   "license": "GPL",
-  "devDependencies": {
-    "prettier": "2.8.3"
-  }
 }
