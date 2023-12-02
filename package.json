@@ -5,5 +5,5 @@
   "scripts": {
     "postversion": "git push && git push --tags"
   },
-  "license": "GPL",
+  "license": "GPL"
 }
