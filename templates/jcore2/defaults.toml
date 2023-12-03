@@ -1,3 +1,4 @@
+template = "jcore2"
 branch = "grasshopper"
 theme =  "jcore2-child"
 wpImage = "jcodigi/wordpress:latest"

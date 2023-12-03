@@ -1,3 +1,4 @@
+template = "blank"
 branch = ""
 theme =  ""
 wpImage = "jcodigi/wordpress:latest"

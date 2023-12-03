@@ -1,3 +1,4 @@
+template = "jcore3"
 branch = "gintonic"
 theme =  "jcore-ilme"
 wpImage = "jcodigi/wordpress:latest"
