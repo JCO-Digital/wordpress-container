@@ -104,10 +104,8 @@ async function build(config) {
   if (process.argv[2] === "build") {
     await esbuild.build(config);
   } else if (process.argv[2] === "watch") {
-    // ESbuild 0.16 syntax used until dependencies are resolved for 0.17.
-    await esbuild.build({ ...config, watch: true });
     // ESbuild 0.17 syntax.
-    //await (await esbuild.context(config)).watch();
+    await (await esbuild.context(config)).watch();
   }
 }
 
