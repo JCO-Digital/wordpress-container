@@ -1,7 +1,8 @@
 [jcore2]
 branch = "grasshopper"
 branches = ["elduelo", "fluffycritter", "grasshopper"]
-child = true,
+child = true
+
 [[jcore2.submodules]]
 path = "wp-content/themes/jcore2"
 repo = "git@bitbucket.org:jcodigital/jcore2.git"
