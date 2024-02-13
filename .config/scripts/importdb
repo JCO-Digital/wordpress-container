@@ -26,7 +26,6 @@ if [ -f "$SQLPATH/update.sql" ]; then
   # Update table prefix
   wp config set --path="$WEBROOT" --type=variable table_prefix $WORDPRESS_PREFIX
 
-  wp db reset --path="$WEBROOT" --yes
   wp db import --path="$WEBROOT" "$SQLPATH/update.sql"
   if [ -f "$SQLPATH/db.sql" ]; then
     mv "$SQLPATH/db.sql" "$SQLPATH/db.old.sql"
