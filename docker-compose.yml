@@ -19,7 +19,7 @@ services:
 
   # MariaDB container
   db:
-    image: "mariadb:latest"
+    image: "mariadb:11.2"
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: ${WP_DB_NAME}
