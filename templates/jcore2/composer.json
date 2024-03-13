@@ -11,12 +11,6 @@
         }
     },
     "config": {
-        "http-basic": {
-            "repo.jco.fi": {
-                "username": "WNRyTv3UaRs2IIvVJ71tJTn9f6iJPVUS",
-                "password": "satispress"
-            }
-        },
         "platform": {
             "php": "8.0"
         },
