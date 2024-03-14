@@ -23,9 +23,10 @@ fi
 
 if [ -f "$SQLPATH/update.sql" ]; then
   echo "Found update"
-  # Update table prefix
-  wp config set --path="$WEBROOT" --type=variable table_prefix $WORDPRESS_PREFIX
+  echo "Update table prefix"
+  wp config set --path="$WEBROOT" --type=variable table_prefix $DB_PREFIX
 
+  echo "Import DB"
   wp db import --path="$WEBROOT" "$SQLPATH/update.sql"
   if [ -f "$SQLPATH/db.sql" ]; then
     mv "$SQLPATH/db.sql" "$SQLPATH/db.old.sql"
