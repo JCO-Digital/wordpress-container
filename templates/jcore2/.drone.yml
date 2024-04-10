@@ -13,6 +13,9 @@ steps:
     image: composer:latest
     commands:
       - composer install --no-ansi --no-dev --no-interaction --optimize-autoloader
+    environment:
+      COMPOSER_AUTH:
+        from_secret: composer_auth
 
   - name: build
     image: node:lts
