@@ -5,6 +5,7 @@ wpImage = "jcodigi/wordpress:latest"
 pluginLocal = [ "loco-translate", "pattern-manager" ]
 pluginExclude = [ "minimal-coming-soon-maintenance-mode", "coming-soon", "hyperdb", "hyperdb-1-1" ]
 dbExclude = [ "relevanssi" ]
+dbPrefix = "wp_"
 remoteDomain = "localhost"
 localDomain = "localhost"
 wpDebug = true
