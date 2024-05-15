@@ -1,0 +1,21 @@
+{
+  "name": "jcore3",
+  "version": "0.1.0",
+  "author": "JCO Digital <developer@jco.fi>",
+  "scripts": {
+    "build": "make watch",
+    "watch": "make build",
+    "postversion": "git push && git push --tags"
+  },
+  "license": "GPL",
+  "devDependencies": {
+    "prettier": "^3.1.0"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
+}
