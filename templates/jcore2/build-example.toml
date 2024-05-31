@@ -1,6 +1,6 @@
 [[scripts]]
 entryPoints = [ "wp-content/themes/jcore2-child/js", "wp-content/themes/jcore2/js" ]
-outdir = "wp-content/themes/seurana/jcore2-child/js"
+outdir = "wp-content/themes/jcore2-child/dist/js"
 
 [[scripts]]
 entryPoints = [ "wp-content/plugins/jcore-something/js" ]
