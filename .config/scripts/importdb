@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $PROJECT_PATH/.env
+
 SQLPATH="$PROJECT_PATH/.jcore/sql"
 
 mkdir -p $SQLPATH
