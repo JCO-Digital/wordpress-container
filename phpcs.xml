@@ -22,4 +22,7 @@
     <rule ref="WordPress-Extra">
         <exclude name="WordPress.PHP.YodaConditions" />
     </rule>
+    <rule ref="Generic.CodeAnalysis.AssignmentInCondition">
+        <exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition"/>
+    </rule>
 </ruleset>
