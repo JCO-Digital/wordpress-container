@@ -1,4 +1,4 @@
-template = "jcore"
+template = "jcore1"
 branch = ""
 theme =  ""
 wpImage = "jcodigi/wordpress:latest"
