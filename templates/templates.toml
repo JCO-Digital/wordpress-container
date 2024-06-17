@@ -20,3 +20,13 @@ branches = ["gintonic"]
 [blank]
 branch = ""
 branches = []
+
+[jcore1]
+branch = "master"
+branches = ["master"]
+child = true
+
+[[jcore1.submodules]]
+path = "wp-content/themes/jcore"
+repo = "git@bitbucket.org:jcodigital/jcore.git"
+useBranch = true
