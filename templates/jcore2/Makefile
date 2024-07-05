@@ -2,15 +2,21 @@ theme := wp-content/themes/jcore2-child
 
 all: install build
 
+ci: ci-install build
+
 install:
 	composer install
-	npm ci
+	pnpm i
+
+ci-install:
+	composer install --no-dev
+	pnpm i
 
 build:
-	npm run build
+	pnpm run build
 
 watch:
-	npm run watch
+	pnpm run watch
 
 clean:
 	rm -rf $(theme)/dist
