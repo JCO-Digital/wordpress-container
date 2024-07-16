@@ -8,11 +8,6 @@ path = "wp-content/themes/jcore2"
 repo = "git@bitbucket.org:jcodigital/jcore2.git"
 useBranch = true
 
-[[jcore2.submodules]]
-path = "wp-content/themes/jcore2-child"
-repo = "git@bitbucket.org:jcodigital/jcore2-child.git"
-useBranch = true
-
 [jcore3]
 branch = "gintonic"
 branches = ["gintonic"]
