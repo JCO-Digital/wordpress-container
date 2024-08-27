@@ -35,6 +35,7 @@ wp config set --path="$WEBROOT" --type=constant WP_DEBUG $WP_DEBUG --raw
 wp config set --path="$WEBROOT" --type=constant WP_DEBUG_LOG $WP_DEBUG_LOG --raw
 wp config set --path="$WEBROOT" --type=constant WP_DEBUG_DISPLAY $WP_DEBUG_DISPLAY --raw
 wp config set --path="$WEBROOT" --type=constant WP_ENVIRONMENT_TYPE "local"
+wp config set --path="$WEBROOT" --type=constant WP_DEVELOPMENT_MODE "all"
 wp config set --path="$WEBROOT" --type=constant JCORE_IS_LOCAL true --raw
 
 /project/.config/scripts/appendssl
