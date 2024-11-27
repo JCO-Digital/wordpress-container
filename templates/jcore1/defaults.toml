@@ -1,11 +1,12 @@
 template = "jcore1"
 wpImage = "jcodigi/wordpress:latest"
+wpVersion = "latest"
 pluginLocal = ["loco-translate", "pattern-manager"]
 pluginExclude = [
-    "minimal-coming-soon-maintenance-mode",
-    "coming-soon",
-    "hyperdb",
-    "hyperdb-1-1",
+	"minimal-coming-soon-maintenance-mode",
+	"coming-soon",
+	"hyperdb",
+	"hyperdb-1-1",
 ]
 dbExclude = ["relevanssi"]
 remoteDomain = "localhost"

@@ -6,7 +6,7 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
 fi
 
 if [[ ! -f "$WEBROOT/index.php" || ! -f "$WEBROOT/wp-includes/version.php" ]]; then
-  wp core download --path="$WEBROOT" --skip-content
+  wp core download --path="$WEBROOT" --version="$WP_VERSION" --skip-content
 fi
 
 # Create config file.

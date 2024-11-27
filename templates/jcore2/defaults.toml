@@ -2,12 +2,13 @@ template = "jcore2"
 branch = "grasshopper"
 theme = "jcore2-child"
 wpImage = "jcodigi/wordpress:latest"
+wpVersion = "latest"
 pluginLocal = ["loco-translate"]
 pluginExclude = [
-    "minimal-coming-soon-maintenance-mode",
-    "coming-soon",
-    "hyperdb",
-    "hyperdb-1-1",
+	"minimal-coming-soon-maintenance-mode",
+	"coming-soon",
+	"hyperdb",
+	"hyperdb-1-1",
 ]
 dbExclude = ["relevanssi"]
 remoteDomain = "localhost"
