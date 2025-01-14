@@ -4,13 +4,13 @@ all: install build
 
 install:
 	composer install
-	cd $(theme); npm ci
+	cd $(theme); pnpm i
 
 build:
-	cd $(theme); npm run build
+	cd $(theme); pnpm build
 
 watch:
-	cd $(theme); npm run watch
+	cd $(theme); pnpm watch
 
 clean:
 	rm -rf $(theme)/dist
