@@ -1,16 +1,18 @@
+[jcore3]
+branch = "gintonic"
+branches = ["gintonic"]
+themeUrl = "https://github.com/JCO-Digital/jcore-ilme/archive/refs/heads/main.zip"
+
 [jcore2]
 branch = "grasshopper"
 branches = ["elduelo", "fluffycritter", "grasshopper"]
+themeUrl = "https://files.jco.fi/jcore2-child-{{branch}}.zip"
 child = true
 
 [[jcore2.submodules]]
 path = "wp-content/themes/jcore2"
 repo = "git@bitbucket.org:jcodigital/jcore2.git"
 useBranch = true
-
-[jcore3]
-branch = "gintonic"
-branches = ["gintonic"]
 
 [blank]
 branch = ""
