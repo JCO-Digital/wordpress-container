@@ -21,22 +21,20 @@
     }
   },
   "require": {
-    "timber/timber": "^1.22.1",
-    "jco/advanced-custom-fields-pro": "^6.2",
-    "jco/wp-migrate-db-pro": "^2.6.6",
-    "sentry/sentry": "^3.18.2",
-    "symfony/http-client": "^v5.4.23",
-    "wpackagist-plugin/wordpress-seo": "^23.0",
-    "wpackagist-plugin/mailgun": "^1.9",
-    "wpackagist-plugin/spinupwp": "^1.7",
-    "wpackagist-plugin/limit-login-attempts-reloaded": "^2.26",
-    "nyholm/psr7": "^1.8.0"
+    "timber/timber": "^1",
+    "sentry/sentry": "^4",
+    "wpackagist-plugin/font-awesome": "*",
+    "wpackagist-plugin/limit-login-attempts-reloaded": "*",
+    "wpackagist-plugin/smtp2go": "*",
+    "wpackagist-plugin/spinupwp": "*",
+    "wpackagist-plugin/wordpress-seo": "*",
+    "jco/advanced-custom-fields-pro": "*"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.7",
-    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-    "wp-coding-standards/wpcs": "3.0.0",
-    "wpackagist-plugin/loco-translate": "^2.6",
-    "wpackagist-plugin/pattern-manager": "^0.3.0"
+    "roave/security-advisories": "dev-latest",
+    "squizlabs/php_codesniffer": "^3",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1",
+    "wp-coding-standards/wpcs": "^3",
+    "wpackagist-plugin/loco-translate": "*"
   }
 }
