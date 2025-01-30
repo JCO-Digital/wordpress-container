@@ -2,6 +2,12 @@ theme := wp-content/themes/ilme
 
 all: install build
 
+ci: ci-install build
+
+ci-install:
+	composer install --no-ansi --no-dev --no-interaction --optimize-autoloader
+	cd $(theme); pnpm i
+
 install:
 	composer install
 	cd $(theme); pnpm i
