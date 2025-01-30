@@ -1,0 +1,30 @@
+name: Deploy site
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  build:
+    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3.1.0
+    with:
+      is_jcore2: true
+      php_version: 8.2
+      slack_channel: C07C91377D4
+    secrets: inherit
+  deploy:
+    needs: [build]
+    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3.1.0
+    with:
+      server_url: siteuser@server
+      base_path: /sites/projectname.vc.bojaco.com/files
+      paths: >-
+        wp-content/themes/projectname/:wp-content/themes/projectname/,
+        wp-content/themes/jcore2/:wp-content/themes/jcore2/,
+        wp-content/plugins/:wp-content/plugins/,
+        wp-content/mu-plugins/module-loader.php:wp-content/mu-plugins/module-loader.php,
+        vendor/:vendor/
+      known_hosts: ${{ vars.VC_HOSTS }}
+      slack_channel: C07C91377D4
+    secrets: inherit
