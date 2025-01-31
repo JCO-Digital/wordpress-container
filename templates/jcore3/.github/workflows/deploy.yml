@@ -2,20 +2,19 @@ name: Deploy site
 
 on:
   push:
-    branch:
+    branches:
       - main
 
 jobs:
   build:
-    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3.1.0
+    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3.2.4
     with:
-      is_jcore2: true
       php_version: 8.2
       slack_channel: C07C91377D4
     secrets: inherit
   deploy:
     needs: [build]
-    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3.1.0
+    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3.2.4
     with:
       server_url: siteuser@server
       base_path: /sites/projectname.vc.bojaco.com/files
@@ -24,6 +23,5 @@ jobs:
         wp-content/plugins/:wp-content/plugins/,
         wp-content/mu-plugins/module-loader.php:wp-content/mu-plugins/module-loader.php,
         vendor/:vendor/
-      known_hosts: ${{ vars.WP_DEPLOY_SSH_HOSTS }}
       slack_channel: C07C91377D4
     secrets: inherit
