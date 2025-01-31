@@ -9,7 +9,7 @@ install:
 	pnpm i
 
 ci-install:
-	composer install --no-dev
+	composer install --no-dev --no-interaction --optimize-autoloader
 	pnpm i
 
 build:

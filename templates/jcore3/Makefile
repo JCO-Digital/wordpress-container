@@ -5,7 +5,7 @@ all: install build
 ci: ci-install build
 
 ci-install:
-	composer install --no-ansi --no-dev --no-interaction --optimize-autoloader
+	composer install --no-dev --no-interaction --optimize-autoloader
 	cd $(theme); pnpm i
 
 install:
