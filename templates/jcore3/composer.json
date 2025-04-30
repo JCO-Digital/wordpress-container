@@ -8,6 +8,10 @@
 		"acf": {
 			"type":"composer",
 			"url":"https://connect.advancedcustomfields.com"
+		},
+		"gravity": {
+			"type":"composer",
+			"url":"https://composer.gravity.io"
 		}
 	},
 	"config": {
@@ -32,7 +36,8 @@
 		"wpackagist-plugin/stream": "*",
 		"wpackagist-plugin/wordpress-seo": "*",
 		"wpackagist-plugin/wpvulnerability": "*",
-		"wpengine/advanced-custom-fields-pro": "*"
+		"wpengine/advanced-custom-fields-pro": "*",
+		"gravity/gravityforms": "*"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest",
