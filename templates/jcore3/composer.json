@@ -1,13 +1,13 @@
 {
 	"minimum-stability": "stable",
 	"repositories": {
-		"satispress": {
-			"type": "composer",
-			"url": "https://repo.jco.fi/satispress/"
-		},
 		"wpackagist": {
 			"type": "composer",
 			"url": "https://wpackagist.org"
+		},
+		"acf": {
+			"type":"composer",
+			"url":"https://connect.advancedcustomfields.com"
 		}
 	},
 	"config": {
@@ -31,7 +31,8 @@
 		"wpackagist-plugin/spinupwp": "*",
 		"wpackagist-plugin/stream": "*",
 		"wpackagist-plugin/wordpress-seo": "*",
-		"jco/advanced-custom-fields-pro": "*"
+		"wpackagist-plugin/wpvulnerability": "*",
+		"wpengine/advanced-custom-fields-pro": "*"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest",
