@@ -3,13 +3,8 @@ theme = "jcore-ilme"
 wpImage = "jcodigi/wordpress:latest"
 wpVersion = "latest"
 pluginLocal = ["loco-translate"]
-pluginExclude = [
-	"minimal-coming-soon-maintenance-mode",
-	"coming-soon",
-	"hyperdb",
-	"hyperdb-1-1",
-]
-dbExclude = ["relevanssi"]
+pluginExclude = ["minimal-coming-soon-maintenance-mode", "coming-soon"]
+dbExclude = []
 dbPrefix = "wp_"
 remoteDomain = "localhost"
 localDomain = "localhost"
