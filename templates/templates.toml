@@ -1,7 +1,7 @@
 [jcore3]
-branch = "gintonic"
-branches = ["gintonic"]
-themeUrl = "https://github.com/JCO-Digital/jcore-ilme/archive/refs/heads/main.zip"
+branch = "hurricane"
+branches = ["gintonic", "hurricane"]
+themeUrl = "https://github.com/JCO-Digital/jcore-ilme/archive/refs/heads/{{branch}}.zip"
 
 [jcore2]
 branch = "grasshopper"
