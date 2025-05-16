@@ -1,21 +1,21 @@
 {
   "name": "jcore3",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "author": "JCO Digital <developer@jco.fi>",
   "scripts": {
-    "build": "make watch",
-    "watch": "make build",
-    "postversion": "git push && git push --tags"
-  },
-  "license": "GPL",
-  "devDependencies": {
-    "prettier": "^3.1.0"
-  },
-  "dependencies": {},
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
+		"prettier": "prettier --write wp-content",
+		"postversion": "git push && git push --tags"
+	},
+	"license": "GPL",
+	"devDependencies": {
+		"@wordpress/prettier-config": "^4.23.0",
+		"@zackad/prettier-plugin-twig": "^0.16.0",
+		"concurrently": "^9.1.2"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	],
+	"packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }

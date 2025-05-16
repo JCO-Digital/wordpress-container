@@ -4,6 +4,7 @@ wpImage = "jcodigi/wordpress:latest"
 wpVersion = "latest"
 pluginLocal = ["loco-translate"]
 pluginExclude = ["minimal-coming-soon-maintenance-mode", "coming-soon"]
+pluginGit = ["lohko"]
 dbExclude = []
 dbPrefix = "wp_"
 remoteDomain = "localhost"
