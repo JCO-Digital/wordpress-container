@@ -1,5 +1,5 @@
 theme := wp-content/themes/ilme
-blocks := wp-content/plugins/lohko
+lohko := wp-content/plugins/lohko
 .PHONY: all dev ci ci-install install build watch clean
 
 all: install build
