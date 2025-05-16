@@ -12,6 +12,10 @@
 *.jpeg binary
 *.webp binary
 
+# Ignore from exports.
+package.json export-ignore
+pnpm-lock.yaml export-ignore
+
 # Always convert script files to unix line endings.
 *.sh     text eol=lf
 /.config/scripts/* text eol=lf
