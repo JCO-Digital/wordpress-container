@@ -16,7 +16,7 @@
 	},
 	"config": {
 		"platform": {
-			"php": "8.2"
+			"php": "8.4"
 		},
 		"allow-plugins": {
 			"composer/installers": true,
@@ -29,6 +29,7 @@
 		"sentry/sentry": "^4",
 		"jcore/dynamic-archive": "^0",
 		"jcore/security": "^0",
+		"jcore/ruudukko": "^0",
 		"wpackagist-plugin/font-awesome": "*",
 		"wpackagist-plugin/limit-login-attempts-reloaded": "*",
 		"wpackagist-plugin/smtp2go": "*",
