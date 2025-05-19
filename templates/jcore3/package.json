@@ -9,8 +9,7 @@
 	"license": "GPL",
 	"devDependencies": {
 		"@wordpress/prettier-config": "^4.23.0",
-		"@zackad/prettier-plugin-twig": "^0.16.0",
-		"concurrently": "^9.1.2"
+		"@zackad/prettier-plugin-twig": "^0.16.0"
 	},
 	"browserslist": [
 		"> 1%",
