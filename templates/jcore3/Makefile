@@ -1,6 +1,6 @@
-theme := wp-content/themes/ilme
+theme := wp-content/themes/netprofile
 lohko := wp-content/plugins/lohko
-.PHONY: all dev ci ci-install install build watch clean
+.PHONY: all dev ci ci-install install build watch watch-theme watch-lohko clean
 
 all: install build
 
@@ -10,25 +10,31 @@ ci: ci-install build
 
 ci-install:
 	composer install --no-dev --no-interaction --optimize-autoloader
-	cd $(theme); pnpm i
-	cd $(lohko); pnpm i
+	pnpm i
+	cd $(theme); ${MAKE} ci-install
+	cd $(lohko); ${MAKE} ci-install
 
 install:
 	composer install
-	cd $(theme); pnpm i
-	cd $(lohko); pnpm i
+	pnpm i
+	cd $(theme); ${MAKE} install
+	cd $(lohko); ${MAKE} install
 
 build:
-	cd $(theme); pnpm build
-	cd $(lohko); pnpm build
+	cd $(theme); ${MAKE} build
+	cd $(lohko); ${MAKE} build
 
 watch:
-	pnpm exec concurrently --kill-others -c green,yellow,blue --names ' blocks,󱎵 sass,󱁤 esbuild' 'cd $(lohko); pnpm start' 'cd $(theme); pnpm watch:sass' 'cd $(theme); pnpm watch:esbuild'
+	${MAKE} -j 2 watch-theme watch-lohko
+
+watch-theme:
+	cd $(theme); ${MAKE} watch
+
+watch-lohko:
+	cd $(lohko); ${MAKE} watch
 
 clean:
-	rm -rf $(theme)/dist
-	rm -rf $(theme)/node_modules
-	rm -rf $(lohko)/build
-	rm -rf $(lohko)/node_modules
+	cd $(theme); ${MAKE} clean
+	cd $(lohko); ${MAKE} clean
 	rm -rf node_modules
 	rm -rf vendor
