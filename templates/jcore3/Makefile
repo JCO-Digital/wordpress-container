@@ -1,4 +1,4 @@
-theme := wp-content/themes/jcore-ilme
+theme := wp-content/themes/{{theme}}
 lohko := wp-content/plugins/lohko
 .PHONY: all dev ci ci-install install build watch watch-theme watch-lohko clean
 
@@ -11,14 +11,10 @@ ci: ci-install build
 ci-install:
 	composer install --no-dev --no-interaction --optimize-autoloader
 	pnpm i
-	cd $(theme); ${MAKE} ci-install
-	cd $(lohko); ${MAKE} ci-install
 
 install:
 	composer install
 	pnpm i
-	cd $(theme); ${MAKE} install
-	cd $(lohko); ${MAKE} install
 
 build:
 	cd $(theme); ${MAKE} build
