@@ -1,4 +1,4 @@
-theme := wp-content/themes/netprofile
+theme := wp-content/themes/jcore-ilme
 lohko := wp-content/plugins/lohko
 .PHONY: all dev ci ci-install install build watch watch-theme watch-lohko clean
 
