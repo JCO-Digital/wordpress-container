@@ -1,15 +1,18 @@
-theme := wp-content/themes/jcore2-child
+theme := wp-content/themes/tivolisariola
+.PHONY: all dev ci ci-install install build watch clean
 
 all: install build
 
-ci: ci-install build
+dev: install watch
 
-install:
-	composer install
-	pnpm i
+ci: ci-install build
 
 ci-install:
 	composer install --no-dev --no-interaction --optimize-autoloader
+	pnpm i
+
+install:
+	composer install
 	pnpm i
 
 build:
