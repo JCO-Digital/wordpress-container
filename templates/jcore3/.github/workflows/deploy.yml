@@ -7,14 +7,14 @@ on:
 
 jobs:
   build:
-    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3.2.4
+    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3.3.1
     with:
       php_version: 8.2
       slack_channel: C07C91377D4
     secrets: inherit
   deploy:
     needs: [build]
-    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3.2.4
+    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3.3.1
     with:
       server_url: siteuser@server
       base_path: files
