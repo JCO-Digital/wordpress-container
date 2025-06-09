@@ -1,3 +1,6 @@
-const config = require("@wordpress/prettier-config");
-config.plugins = ["@zackad/prettier-plugin-twig"];
+const defaultConfig = require("@wordpress/prettier-config");
+const config = {
+  ...defaultConfig,
+  plugins: [...defaultConfig.plugins, "@zackad/prettier-plugin-twig"],
+  }
 module.exports = config;
