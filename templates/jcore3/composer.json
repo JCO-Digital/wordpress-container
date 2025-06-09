@@ -35,6 +35,7 @@
 		"wpackagist-plugin/smtp2go": "*",
 		"wpackagist-plugin/spinupwp": "*",
 		"wpackagist-plugin/stream": "*",
+		"wpackagist-plugin/two-factor": "*",
 		"wpackagist-plugin/wordpress-seo": "*",
 		"wpackagist-plugin/wpvulnerability": "*",
 		"wpengine/advanced-custom-fields-pro": "*",
