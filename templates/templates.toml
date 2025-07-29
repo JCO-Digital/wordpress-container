@@ -16,7 +16,7 @@ repo = "git@bitbucket.org:jcodigital/jcore2.git"
 useBranch = true
 
 [blank]
-branch = ""
+branch = "main"
 branches = []
 
 [jcore1]
