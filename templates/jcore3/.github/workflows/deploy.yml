@@ -12,11 +12,12 @@ jobs:
       php_version: 8.2
       slack_channel: C53TA4C5V
     secrets: inherit
-  deploy:
+  deploy-main:
     needs: [build]
+    if: github.ref == 'refs/heads/main' # Example of conditional deploy
     uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3
     with:
-      server_url: siteuser@server
+      server_url: siteuser@vs.bojaco.com # Change user and server
       base_path: files
       paths: >-
         wp-content/themes/projectname/:wp-content/themes/projectname/,
