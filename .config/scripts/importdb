@@ -2,44 +2,25 @@
 
 source $PROJECT_PATH/.env
 
+BEFORE_SCRIPT=$PROJECT_PATH/custom-scripts/db-before
+AFTER_SCRIPT=$PROJECT_PATH/custom-scripts/db-after
 SQLPATH="$PROJECT_PATH/.jcore/sql"
 
-mkdir -p $SQLPATH
-if [ -f $SQLPATH/update.sql.gz ]; then
-  gunzip $SQLPATH/update.sql.gz
-fi
-if [ ! -f $SQLPATH/update.sql ]; then
-  exclude=""
-  # Exclude tables from export
-  if [ ! -z "$DB_EXCLUDE" ]; then
-    ARGS="--exclude_tables="
-    for table in $DB_EXCLUDE ; do
-      ARGS+="${DB_PREFIX}${table},"
-    done
-    exclude=`echo ${ARGS} | sed s/,$//`
-  fi
-  mkdir -p sql
-  echo "Fetching DB from $REMOTE_HOST"
-  wp db export ${exclude} --all-tablespaces --single-transaction --quick --lock-tables=false --ssh="$REMOTE_HOST" --path="$REMOTE_PATH" - > "$SQLPATH/update.sql" || rm "$SQLPATH/update.sql"
+# Run custom script if it exists.
+if [ -f "$BEFORE_SCRIPT" ]; then
+    source $BEFORE_SCRIPT
 fi
 
-if [ -f "$SQLPATH/update.sql" ]; then
-  echo "Found update"
-  echo "Update table prefix"
-  wp config set --path="$WEBROOT" --type=variable table_prefix $DB_PREFIX
+# Prepare import file.
+source $PROJECT_PATH/.config/scripts/parts/db-prepare.bash
 
-  echo "Import DB"
-  wp db import --path="$WEBROOT" "$SQLPATH/update.sql"
-  if [ -f "$SQLPATH/db.sql" ]; then
-    mv "$SQLPATH/db.sql" "$SQLPATH/db.old.sql"
-  fi
-  mv "$SQLPATH/update.sql" "$SQLPATH/db.sql"
+# Fetch data from external sources.
+source $PROJECT_PATH/.config/scripts/parts/db-fetch.bash
 
-  for replaceRecord in $REPLACE; do
-    record=(${replaceRecord//|/ })
-    if [[ ${#record[*]} -ge 2 ]]; then
-      echo "Replace ${record[0]} with ${record[1]}"
-      wp search-replace --path="$WEBROOT" "${record[0]}" "${record[1]}"  --recurse-objects --report-changed-only --skip-columns=guid
-    fi
-  done
+# Import data into database.
+source $PROJECT_PATH/.config/scripts/parts/db-import.bash
+
+# Run custom script if it exists.
+if [ -f "$AFTER_SCRIPT" ]; then
+    source $AFTER_SCRIPT
 fi

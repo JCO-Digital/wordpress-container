@@ -2,11 +2,5 @@
 
 source $PROJECT_PATH/.env
 
-for PLUGIN in $PLUGIN_LOCAL ; do
-  if wp plugin is-installed --path="$WEBROOT" "$PLUGIN"
-  then
-      wp plugin activate --path="$WEBROOT" "$PLUGIN"
-  else
-    wp plugin install --path="$WEBROOT" --activate "$PLUGIN"
-  fi
-done
+# Install the local plugins.
+source $PROJECT_PATH/.config/scripts/parts/plugin-install.bash
