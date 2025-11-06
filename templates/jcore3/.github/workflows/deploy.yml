@@ -21,7 +21,9 @@ jobs:
       base_path: files
       paths: >-
         wp-content/themes/projectname/:wp-content/themes/projectname/,
-        wp-content/plugins/:wp-content/plugins/,
+        wp-content/plugins/lohko/:wp-content/plugins/lohko/,
+        wp-content/plugins/ruudukko/:wp-content/plugins/ruudukko/,
+        wp-content/plugins/dynamic-archive/:wp-content/plugins/dynamic-archive/,
         wp-content/mu-plugins/module-loader.php:wp-content/mu-plugins/module-loader.php,
         vendor/:vendor/
       slack_channel: C53TA4C5V
