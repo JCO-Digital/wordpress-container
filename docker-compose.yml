@@ -52,7 +52,8 @@ services:
     image: ${WP_IMAGE}
     user: "1000"
     environment:
-      CERT_DIR: "/home/jcore/ca"
+      - CERT_DIR=/home/jcore/ca
+      - SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
     env_file: .env
     volumes:
       - .:/project
@@ -62,6 +63,7 @@ services:
       - ./vendor:/var/www/html/vendor
       - ~/.config/jcore/ssh:/home/jcore/.ssh
       - ~/.config/jcore/ssl:/home/jcore/ca
+      - ${SSH_AUTH_SOCK:-/dev/null}:/run/user/1000/ssh-agent.socket:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
