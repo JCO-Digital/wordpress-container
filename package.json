@@ -1,6 +1,6 @@
 {
   "name": "wordpress-container",
-  "version": "3.11.0",
+  "version": "3.12.0",
   "author": "JCO Digital <developer@jco.fi>",
   "scripts": {
     "postversion": "git push && git push --tags"
