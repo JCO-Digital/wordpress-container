@@ -18,7 +18,6 @@
 	},
 	"require": {
 		"jcore/ydin": "^3",
-		"sentry/sentry": "^4",
 		"jcore/dynamic-archive": "^0",
 		"jcore/security": "^0",
 		"jcore/ruudukko": "^0",

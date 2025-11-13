@@ -22,7 +22,6 @@
   },
   "require": {
     "timber/timber": "^1",
-    "sentry/sentry": "^4",
     "wpackagist-plugin/font-awesome": "*",
     "wpackagist-plugin/limit-login-attempts-reloaded": "*",
     "wpackagist-plugin/smtp2go": "*",
