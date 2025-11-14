@@ -1,8 +1,8 @@
 {
-  "name": "jcore3",
-  "version": "3.0.0",
-  "author": "JCO Digital <developer@jco.fi>",
-  "scripts": {
+	"name": "jcore3",
+	"version": "3.0.0",
+	"author": "JCO Digital <developer@jco.fi>",
+	"scripts": {
 		"prettier": "prettier --write wp-content",
 		"postversion": "git push && git push --tags"
 	},
