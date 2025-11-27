@@ -19,7 +19,7 @@ jobs:
     uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3
     with:
       server_url: siteuser@server
-      base_path: /sites/projectname.vc.bojaco.com/files
+      base_path: files
       paths: >-
         wp-content/themes/projectname/:wp-content/themes/projectname/,
         wp-content/themes/jcore2/:wp-content/themes/jcore2/,
