@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3.2.4
+    uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v3
     with:
       is_jcore2: true
       php_version: 8.2
@@ -15,7 +15,8 @@ jobs:
     secrets: inherit
   deploy:
     needs: [build]
-    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3.2.4
+    if: github.ref == 'refs/heads/main' # Example of conditional deploy
+    uses: jco-digital/deploy-wp-action/.github/workflows/server-deploy.yml@v3
     with:
       server_url: siteuser@server
       base_path: /sites/projectname.vc.bojaco.com/files
