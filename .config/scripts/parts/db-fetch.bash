@@ -1,7 +1,7 @@
 if [ ! -f $SQLPATH/update.sql ]; then
   exclude=""
   # Exclude tables from export
-  if [ ! -z "$DB_EXCLUDE" ]; then
+  if [ -n "$DB_EXCLUDE" ]; then
     ARGS="--exclude_tables="
     for table in $DB_EXCLUDE ; do
       ARGS+="${DB_PREFIX}${table},"

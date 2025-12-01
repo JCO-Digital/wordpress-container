@@ -14,7 +14,7 @@ fi
 source $PROJECT_PATH/.config/scripts/parts/plugin-ignore.bash
 
 if [[ "$PLUGIN_INSTALL" == "composer" || "$PLUGIN_INSTALL" == "local" ]]; then
-	echo "Project set to composer plugins install, skipping plugins."
+	echo "Project set to composer or local plugins install, skipping plugins."
 else
 	# Import plugins from the plugin directory.
 	source $PROJECT_PATH/.config/scripts/parts/plugin-import.bash
