@@ -38,6 +38,18 @@ wp config set --path="$WEBROOT" --type=constant WP_ENVIRONMENT_TYPE "local"
 wp config set --path="$WEBROOT" --type=constant WP_DEVELOPMENT_MODE "all"
 wp config set --path="$WEBROOT" --type=constant JCORE_IS_LOCAL true --raw
 
+# Add multisite configuration constants
+if [[ $MULTISITE == true ]]; then
+	wp config set --path="$WEBROOT" --type=constant WP_ALLOW_MULTISITE true --raw
+	wp config set --path="$WEBROOT" --type=constant MULTISITE true --raw
+	wp config set --path="$WEBROOT" --type=constant PATH_CURRENT_SITE "/"
+	wp config set --path="$WEBROOT" --type=constant SUBDOMAIN_INSTALL true --raw
+	wp config set --path="$WEBROOT" --type=constant DOMAIN_CURRENT_SITE "$LOCAL_DOMAIN"
+	wp config set --path="$WEBROOT" --type=constant SITE_ID_CURRENT_SITE 1 --raw
+	wp config set --path="$WEBROOT" --type=constant BLOG_ID_CURRENT_SITE 1 --raw
+	wp config set --path="$WEBROOT" --type=constant COOKIE_DOMAIN ""
+fi
+
 /project/.config/scripts/appendssl
 
 # Start PHP-FPM
