@@ -9,7 +9,6 @@ jobs:
   build:
     uses: jco-digital/deploy-wp-action/.github/workflows/build-project.yml@v4
     with:
-      is_jcore2: true
       php_version: 8.2
       slack_channel: C07C91377D4
     secrets: inherit
