@@ -1,4 +1,4 @@
-theme := wp-content/themes/tivolisariola
+theme := wp-content/themes/project
 .PHONY: all dev ci ci-install install build watch clean
 
 all: install build
